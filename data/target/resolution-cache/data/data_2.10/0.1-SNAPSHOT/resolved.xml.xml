@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:e="http://ant.apache.org/ivy/extra">
+	<info organisation="data"
+		module="data_2.10"
+		revision="0.1-SNAPSHOT"
+		status="integration"
+		publication="20160401104422"
+	>
+		<description>
+		data
+		</description>
+	</info>
+	<configurations>
+		<conf name="compile" visibility="public" description=""/>
+		<conf name="runtime" visibility="public" description="" extends="compile"/>
+		<conf name="test" visibility="public" description="" extends="runtime"/>
+		<conf name="provided" visibility="public" description=""/>
+		<conf name="optional" visibility="public" description=""/>
+		<conf name="compile-internal" visibility="private" description="" extends="compile,optional,provided"/>
+		<conf name="runtime-internal" visibility="private" description="" extends="runtime,optional"/>
+		<conf name="test-internal" visibility="private" description="" extends="test,optional,provided"/>
+		<conf name="plugin" visibility="private" description=""/>
+		<conf name="sources" visibility="public" description=""/>
+		<conf name="docs" visibility="public" description=""/>
+		<conf name="pom" visibility="public" description=""/>
+		<conf name="scala-tool" visibility="private" description=""/>
+	</configurations>
+	<publications>
+		<artifact name="data_2.10" type="pom" ext="pom" conf="pom"/>
+		<artifact name="data_2.10" type="jar" ext="jar" conf="compile"/>
+		<artifact name="data_2.10" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		<artifact name="data_2.10" type="doc" ext="jar" conf="docs" e:classifier="javadoc"/>
+	</publications>
+	<dependencies>
+		<dependency org="org.scala-lang" name="scala-compiler" rev="2.10.4" conf="scala-tool->default,optional(default)"/>
+		<dependency org="org.scala-lang" name="scala-library" rev="2.10.4" conf="scala-tool->default,optional(default);compile->default(compile)"/>
+		<dependency org="common" name="common_2.10" rev="0.1-SNAPSHOT" conf="compile->default(compile)"/>
+		<dependency org="org.scoverage" name="scalac-scoverage-runtime_2.10" rev="1.1.0" conf="provided->default(compile)"/>
+		<dependency org="org.scoverage" name="scalac-scoverage-plugin_2.10" rev="1.1.0" conf="provided->default(compile)"/>
+		<dependency org="com.github.nscala-time" name="nscala-time_2.10" rev="2.6.0" conf="compile->default(compile)"/>
+		<dependency org="commons-codec" name="commons-codec" rev="1.9" conf="compile->default(compile)"/>
+		<dependency org="io.spray" name="spray-can_2.10" rev="1.3.3" conf="compile->default(compile)"/>
+		<dependency org="io.spray" name="spray-routing_2.10" rev="1.3.3" conf="compile->default(compile)"/>
+		<dependency org="io.spray" name="spray-testkit_2.10" rev="1.3.3" conf="test->default(compile)"/>
+		<dependency org="mysql" name="mysql-connector-java" rev="5.1.37" conf="compile->default(compile)"/>
+		<dependency org="org.apache.hadoop" name="hadoop-common" rev="2.6.2" conf="compile->default(compile)">
+			<exclude org="javax.servlet" module="servlet-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="org.apache.hbase" name="hbase-common" rev="0.98.5-hadoop2" conf="compile->default(compile)"/>
+		<dependency org="org.apache.hbase" name="hbase-client" rev="0.98.5-hadoop2" conf="compile->default(compile)">
+			<exclude org="org.apache.zookeeper" module="zookeeper" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="org.apache.hbase" name="hbase-server" rev="0.98.5-hadoop2" conf="compile->default(compile)">
+			<exclude org="org.apache.hbase" module="hbase-client" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.apache.zookeeper" module="zookeeper" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="javax.servlet" module="servlet-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.mortbay.jetty" module="servlet-api-2.5" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.mortbay.jetty" module="jsp-api-2.1" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.mortbay.jetty" module="jsp-2.1" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="org.apache.zookeeper" name="zookeeper" rev="3.4.7" conf="compile->default(compile)">
+			<exclude org="org.slf4j" module="slf4j-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.slf4j" module="slf4j-log4j12" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="org.apache.spark" name="spark-core_2.10" rev="1.4.0" conf="provided->default(compile)"/>
+		<dependency org="org.apache.spark" name="spark-sql_2.10" rev="1.4.0" conf="provided->default(compile)"/>
+		<dependency org="org.clapper" name="grizzled-slf4j_2.10" rev="1.0.2" conf="compile->default(compile)"/>
+		<dependency org="org.elasticsearch" name="elasticsearch" rev="1.4.4" conf="compile->default(compile)"/>
+		<dependency org="org.json4s" name="json4s-native_2.10" rev="3.2.10" conf="compile->default(compile)"/>
+		<dependency org="org.json4s" name="json4s-ext_2.10" rev="3.2.10" conf="compile->default(compile)"/>
+		<dependency org="org.postgresql" name="postgresql" rev="9.4-1204-jdbc41" conf="compile->default(compile)"/>
+		<dependency org="org.scalatest" name="scalatest_2.10" rev="2.1.6" conf="test->default(compile)"/>
+		<dependency org="org.scalikejdbc" name="scalikejdbc_2.10" rev="2.3.2" conf="compile->default(compile)"/>
+		<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.13" conf="compile->default(compile)"/>
+		<dependency org="org.spark-project.akka" name="akka-actor_2.10" rev="2.3.4-spark" conf="compile->default(compile)"/>
+		<dependency org="org.specs2" name="specs2_2.10" rev="2.3.13" conf="test->default(compile)"/>
+	</dependencies>
+</ivy-module>
